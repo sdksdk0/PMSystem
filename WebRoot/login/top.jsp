@@ -88,7 +88,7 @@ else
 										<td width="155" valign="bottom"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">
 											用户名：
-											<font color="blue">&#36229;&#32423;&#31649;&#29702;&#21592;</font>
+											<font color="blue">${sessionScope.user.userName } </font>
 										</td>
 										<td width="10" align="right"
 											background="${pageContext.request.contextPath}/images/mis_05b.jpg">

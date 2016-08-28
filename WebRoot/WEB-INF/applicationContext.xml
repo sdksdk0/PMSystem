@@ -4,7 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	
+	<bean name="userDao"  class="cn.tf.dao.impl.UserDaoImpl"></bean>
+	<bean name="businessService"  class="cn.tf.service.impl.BusinessServiceImpl">
+		<property name="userDao"  ref="userDao"></property>
 	
-
+	</bean>
 </beans>
 	

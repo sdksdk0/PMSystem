@@ -59,7 +59,7 @@ function ini(){
 													</tr>
 													<tr>
 														<td height="30" nowrap colspan="2">
-															<strong><font color="red"></font> </strong>
+															<strong><font color="red"><s:actionerror /></font> </strong>
 														</td>
 													</tr>
 													<tr>

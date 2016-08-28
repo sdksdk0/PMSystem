@@ -12,7 +12,19 @@
 					<result>/login/home.jsp</result>
 					<result name="login">/login/login.jsp</result>
 				</action>
-			
+				<action name="addUser"  class="cn.tf.action.UserAction"  method="addUser">
+					<!-- 限制文件上传的类型 -->
+					<interceptor-ref name="defaultStack">
+						<param name="fileUpload.allowedExtensions">.doc,.docx,.pdf</param>
+					</interceptor-ref>
+					<result type="redirectAction">listUser</result>
+				</action>
+				<action name="listUser" class="cn.tf.action.UserAction"  method="listUser">
+					<result>/user/list.jsp</result>
+				</action>
+				<action name="delUser" class="cn.tf.action.UserAction"  method="delUser">
+					<result type="redirectAction">listUser</result>
+				</action>
 			
 			
 		</package> 
