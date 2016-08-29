@@ -32,6 +32,42 @@ public class UserAction extends ActionSupport  implements ModelDriven<User>{
 	private InputStream inStream;
 	private String downloadFilename;
 	
+	public String download(){
+		
+		user=businessService.findOne(user.getUserID());
+		ServletContext sc=ServletActionContext.getServletContext();
+		String rootDirectory=sc.getRealPath("/files");
+		
+		try {
+			inStream=new FileInputStream(rootDirectory+File.separator+user.getPath()+File.separator+user.getFilename());
+			
+			//截取文件名
+			String guidFilename = user.getFilename();
+			downloadFilename = URLEncoder.encode(guidFilename.substring(guidFilename.indexOf("_")+1), "UTF-8");
+			return SUCCESS;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ERROR;
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	public String view(){
+		user=businessService.findOne(user.getUserID());
+		return SUCCESS;
+	}
+	
+	
+	
+	
 	
 	public String login(){
 		User dbUser=businessService.login(user.getLogonName(),user.getLogonPwd());
@@ -135,6 +171,47 @@ public class UserAction extends ActionSupport  implements ModelDriven<User>{
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
+
+
+
+
+
+
+	public InputStream getInStream() {
+		return inStream;
+	}
+
+
+
+
+
+
+
+	public void setInStream(InputStream inStream) {
+		this.inStream = inStream;
+	}
+
+
+
+
+
+
+
+	public String getDownloadFilename() {
+		return downloadFilename;
+	}
+
+
+
+
+
+
+
+	public void setDownloadFilename(String downloadFilename) {
+		this.downloadFilename = downloadFilename;
+	}
+	
 
 
 

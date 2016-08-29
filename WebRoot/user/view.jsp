@@ -1,4 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
+
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -23,13 +25,13 @@
 						登录名：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						caocao
+						<s:property  value="user.logonName" />
 					</td>
 					<td align="center" bgColor="#f5fafe" class="ta_01">
 						用户姓名：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						曹操
+						<s:property  value="user.userName" />
 					</td>
 				</tr>
 				
@@ -38,13 +40,13 @@
 						性别：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						女
+						<s:property  value="user.sex" />
 					</td>
 					<td align="center" bgColor="#f5fafe" class="ta_01">
 						学历：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						研究生
+						<s:property  value="user.education" />
 					</td>
 				</tr>
 				<tr>
@@ -52,13 +54,13 @@
 						出生日期：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						2012-03-01
+						<s:property  value="user.birthday" />
 					</td>
 					<td align="center" bgColor="#f5fafe" class="ta_01">
 						电话：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						12312121
+						<s:property  value="user.telephone" />
 					</td>
 				</tr>
 				<tr>
@@ -66,7 +68,7 @@
 						兴趣爱好：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colSpan="3">
-						 看电影, 旅游
+						<s:property  value="user.interest" />
 					</td>
 				</tr>
 				<tr>
@@ -74,8 +76,11 @@
 						简历资料：
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colSpan="3">
-						<a href="#" onclick="openWindow('user/userAction_download.do?userID=17','700','400')" class="cl_01">
-						     费用报销单模板.doc
+						<s:url action="download" var="url">
+							<s:param name="userID" value="user.userID"></s:param>
+						</s:url>
+						<a href="#" onclick="openWindow('<s:property value="#url"/>','700','400')" class="cl_01">
+						    <s:property value="user.filename.substring(user.filename.indexOf('_')+1)"/>
 						</a>
 					</td>
 				</tr>
@@ -84,7 +89,7 @@
 						备注：
 					</TD>
 					<TD class="ta_01" bgColor="#ffffff" colSpan="3">
-						的
+						<s:property  value="user.remark" />
 					</TD>
 				</TR>
 				<TR>

@@ -9,7 +9,7 @@ public class User implements Serializable {
 	private String logonName;
 	private String logonPwd;
 	private String sex;//男|女
-	private Date birthday;//yyyy-MM-dd
+	private String birthday;//yyyy-MM-dd
 	private String education;//研究生|本科|专科|高中|初中|小学|幼儿园|胎教
 	private String telephone;
 	private String interest;//体育,旅游,逛街
@@ -46,10 +46,10 @@ public class User implements Serializable {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	public String getEducation() {
