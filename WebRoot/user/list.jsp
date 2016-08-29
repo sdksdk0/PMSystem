@@ -14,7 +14,8 @@
 	</HEAD>
 	<body>
 		<br>
-		<form id="Form1" name="Form1" action="${pageContext.request.contextPath}/user/list.jsp" method="post">
+		
+		<s:form  action="query">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
 				<TBODY>
 					<tr>
@@ -30,20 +31,14 @@
 										用户姓名
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										<input type="text" name="userName" size="15" value="" id="Form1_userName" class="bg"/>
+										<s:textfield   name="userName" size="15" value="" id="Form1_userName" cssClass="bg"></s:textfield>
+										
 									</td>
 									<td height="22" align="center" bgColor="#f5fafe" class="ta_01">
 										性别：
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										
-										<select name="sex" id="sex">
-										    <option value="">--选择性别--</option>
-										    <option value="男">男</option>
-										    <option value="女">女</option>
-										
-										
-										</select>
+										<s:select  list="{'男','女'}" name="sex"  headerKey="" headerValue="--选择性别--" ></s:select>
 
 									</td>
 								</tr>
@@ -53,31 +48,14 @@
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
 										
-										<select name="education" id="education">
-										    <option value="">--选择学历--</option>
-										    <option value="博士">博士</option>
-										    <option value="硕士">硕士</option>
-										    <option value="研究生">研究生</option>
-										    <option value="本科">本科</option>
-										    <option value="专科">专科</option>
-										    <option value="高中">高中</option>
-										
-										
-										</select>
+										<s:select name="education"  list="{'博士','硕士','本科','大专'}"  headerKey=""  headerValue="--选择学历--"></s:select>
 
 									</td>
 									<td height="22" align="center" bgColor="#f5fafe" class="ta_01">
 										是否上传简历
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										
-										<select name="isUpload" id="isUpload">
-										    <option value="">--请选择--</option>
-										    <option value="1">有</option>
-										    <option value="2">无</option>
-										
-										
-										</select>
+										<s:select name="isUpload"  list="#{'1':'有','0':'无'}"  headerKey=""  headerValue="--请选择--" ></s:select>
 
 									</td>
 								</tr>
@@ -172,9 +150,10 @@
 												<s:property value="#u.education"/>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
-												<a href="${pageContext.request.contextPath}/user/edit.jsp?userID=15">
+												<s:a action="editUI">
+													<s:param name="userID" value="#u.userID"></s:param>
 													<img src="${pageContext.request.contextPath}/images/i_edit.gif" border="0" style="CURSOR: hand">
-												</a>
+												</s:a>
 											</td>
 											<td align="center" style="HEIGHT: 22px">
 												<s:a action="view">
@@ -195,7 +174,7 @@
 					</tr>
 				</TBODY>
 			</table>
-		</form>
+		</s:form>
 	</body>
 </HTML>
 

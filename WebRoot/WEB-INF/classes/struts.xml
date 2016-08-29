@@ -35,7 +35,15 @@
 							<param name="contentDisposition">attachment;filename=${downloadFilename}</param>
 						</result>
 				</action>
-				
-			
+				<action name="editUI" class="cn.tf.action.UserAction"  method="editUI">
+					<result>/user/edit.jsp</result>
+				</action>
+				<action name="editUser"  class="cn.tf.action.UserAction"  method="editUser">
+					<!-- 限制文件上传的类型 -->
+					<interceptor-ref name="defaultStack">
+						<param name="fileUpload.allowedExtensions">.doc,.docx,.pdf</param>
+					</interceptor-ref>
+					<result type="redirectAction">listUser</result>
+				</action>
 		</package> 
 </struts>

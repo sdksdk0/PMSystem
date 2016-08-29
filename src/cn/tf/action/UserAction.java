@@ -14,19 +14,75 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.TokenHelper;
 
 import cn.tf.domain.User;
 import cn.tf.service.BusinessService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.util.ValueStack;
 
 public class UserAction extends ActionSupport  implements ModelDriven<User>{
 
 	private User user=new User();
 	private BusinessService businessService;
+	
+	
+	
+	public String editUI(){
+		user=businessService.findOne(user.getUserID());
+		ValueStack  vs=ActionContext.getContext().getValueStack();
+		vs.push(user);
+
+		return SUCCESS;
+	}
+	
+	public String editUser(){
+		
+		try {
+			
+			if(StringUtils.isNotBlank(uploadFileName)){
+				//添加用户:文件上传
+				//用户输入的信息都在user中，但没有path和filename
+				String storeDirectory = ServletActionContext.getServletContext().getRealPath("/files");
+				String childDirectory = makeChildDirectory(storeDirectory);
+				user.setPath(childDirectory);//设置存放文件的子目录
+				//搞文件名 uploadFileName：a.doc---->GUID_a.doc
+				String newfilename = TokenHelper.generateGUID()+"_"+uploadFileName;
+				user.setFilename(newfilename);
+				//文件上传
+				FileUtils.moveFile(upload, new File(storeDirectory+File.separator+childDirectory+File.separator+newfilename));
+				
+			}else{
+				User dbUser=businessService.findOne(user.getUserID());
+				user.setPath(dbUser.getPath());
+				user.setFilename(dbUser.getFilename());
+	
+			}
+			businessService.update(user);
+			return SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	private InputStream inStream;
@@ -96,7 +152,6 @@ public class UserAction extends ActionSupport  implements ModelDriven<User>{
 			String newfilename = TokenHelper.generateGUID()+"_"+uploadFileName;
 			user.setFilename(newfilename);
 			//文件上传
-			System.out.println(storeDirectory);
 			FileUtils.moveFile(upload, new File(storeDirectory+File.separator+childDirectory+File.separator+newfilename));
 			businessService.save(user);
 			return SUCCESS;
