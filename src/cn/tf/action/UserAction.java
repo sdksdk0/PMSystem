@@ -32,6 +32,13 @@ public class UserAction extends ActionSupport  implements ModelDriven<User>{
 	private BusinessService businessService;
 	
 	
+	private String isUpload;
+	public String query(){
+		users = businessService.findByCondition(user.getUserName(), user.getSex(), user.getEducation(), isUpload);
+		return SUCCESS;
+	}
+	
+	
 	
 	public String editUI(){
 		user=businessService.findOne(user.getUserID());
@@ -265,6 +272,18 @@ public class UserAction extends ActionSupport  implements ModelDriven<User>{
 
 	public void setDownloadFilename(String downloadFilename) {
 		this.downloadFilename = downloadFilename;
+	}
+
+
+
+	public String getIsUpload() {
+		return isUpload;
+	}
+
+
+
+	public void setIsupload(String isUpload) {
+		this.isUpload = isUpload;
 	}
 	
 

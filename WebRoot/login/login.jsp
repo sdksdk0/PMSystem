@@ -25,7 +25,7 @@ function ini(){
 								<table width="452" height="290" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td height="74">
-											<img src="${pageContext.request.contextPath}/images/logintitle.gif">
+											<h1><p>员工管理系统</p></h1>
 										</td>
 									</tr>
 									<tr>

@@ -7,8 +7,26 @@
 	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.ui.theme" value="simple"></constant>
 	
-		<package name="p1" extends="struts-default">
+	<package name="mydefault" extends="struts-default" abstract="true">
+		<interceptors>
+			<interceptor name="loginCheck" class="cn.tf.filter.LoginFilter"></interceptor>
+			<interceptor-stack name="default">
+				<interceptor-ref name="loginCheck"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="default"></default-interceptor-ref>
+		<global-results>
+			<result name="login">/login/login.jsp</result>
+		</global-results>
+	</package>
+	
+	
+		<package name="p1" extends="mydefault">
 				<action name="login"  class="cn.tf.action.UserAction"  method="login">
+					<interceptor-ref name="default">
+						<param name="loginCheck.excludeMethods">login</param>
+					</interceptor-ref>
 					<result>/login/home.jsp</result>
 					<result name="login">/login/login.jsp</result>
 				</action>
@@ -45,5 +63,11 @@
 					</interceptor-ref>
 					<result type="redirectAction">listUser</result>
 				</action>
+				<action name="query" class="cn.tf.action.UserAction"  method="query">
+					<result>/user/list.jsp</result>
+				</action>
+				
+				
+				
 		</package> 
 </struts>

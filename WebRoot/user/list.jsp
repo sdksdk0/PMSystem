@@ -14,8 +14,7 @@
 	</HEAD>
 	<body>
 		<br>
-		
-		<s:form  action="query">
+		<s:form action="query">
 			<table cellSpacing="1" cellPadding="0" width="100%" align="center" bgColor="#f5fafe" border="0">
 				<TBODY>
 					<tr>
@@ -31,15 +30,13 @@
 										用户姓名
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										<s:textfield   name="userName" size="15" value="" id="Form1_userName" cssClass="bg"></s:textfield>
-										
+										<s:textfield name="userName" size="15" cssClass="bg"></s:textfield>
 									</td>
 									<td height="22" align="center" bgColor="#f5fafe" class="ta_01">
 										性别：
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										<s:select  list="{'男','女'}" name="sex"  headerKey="" headerValue="--选择性别--" ></s:select>
-
+										<s:select list="{'男','女'}" name="sex" headerKey="" headerValue="--请选择--"></s:select>
 									</td>
 								</tr>
 								<tr>
@@ -47,16 +44,13 @@
 										学历：
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										
-										<s:select name="education"  list="{'博士','硕士','本科','大专'}"  headerKey=""  headerValue="--选择学历--"></s:select>
-
+										<s:select name="education" list="{'博士','硕士','本科','大专'}"  headerKey="" headerValue="--请选择--"></s:select>
 									</td>
 									<td height="22" align="center" bgColor="#f5fafe" class="ta_01">
 										是否上传简历
 									</td>
 									<td class="ta_01" bgColor="#ffffff">
-										<s:select name="isUpload"  list="#{'1':'有','0':'无'}"  headerKey=""  headerValue="--请选择--" ></s:select>
-
+										<s:select list="#{1:'有',2:'无'}" name="isUpload" headerKey="" headerValue="--请选择--"></s:select>
 									</td>
 								</tr>
 								<tr>
